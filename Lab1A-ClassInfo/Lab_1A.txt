@@ -1,0 +1,9 @@
+(base) carlosescamilla@Carloss-MacBook-Pro Lab1A-ClassInfo % cd "/Users/carlosescamilla/Desktop/CS22A/Lab1A-Clas
+sInfo/" && g++ Lab_1a.cpp -o Lab_1a && "/Users/carlosescamilla/Desktop/CS22A/Lab1A-ClassInfo/"Lab_1a
+MY NAME:        Carlos Rodriguez Escamilla
+PROJECT:        Lab1A - Class Information
+INSTUCTOR'S NAME:       Mary Pape
+BEST TIME FOR OFFICE HOURS:     Tuesday 12:00 noon - 12:50pm
+FINAL DATE AND TIME:    Thursday, June 23, 2022 from 5:00 - 7:00pm
+Programmed by Carlos Rodriguez Escamilla
+(base) carlosescamilla@Carloss-MacBook-Pro Lab1A-ClassInfo % 
