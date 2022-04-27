@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define STATE_TAX (7.25 / 100)
+#define STATE_TAX_RATE (7.25 / 100)
 
 int main()
 {
@@ -37,12 +37,12 @@ int main()
     // cin >> sunnyvaleAmount;
 
     // Sales variable calculating total sales
-    sales = (cupertinoAmount + losAltosAmount + sunnyvaleAmount) / (1.0 + STATE_TAX + (1.75 / 100.0));
+    sales = (cupertinoAmount + losAltosAmount + sunnyvaleAmount) / (1.0 + STATE_TAX_RATE + countyTaxRate);
     // Total Sales Collected
     totalCollected = cupertinoAmount + losAltosAmount + sunnyvaleAmount;
     // County Sales Tax
     countySalesTax = sales * countyTaxRate;
-    stateSalesTax = sales * STATE_TAX;
+    stateSalesTax = sales * STATE_TAX_RATE;
 
 
     cout << monthYear << endl;
