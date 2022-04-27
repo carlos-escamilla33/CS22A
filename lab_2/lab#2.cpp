@@ -8,35 +8,39 @@
 
 using namespace std;
 
-/*Sales tax rate set at 8.75%
-  Tip rate set with global preprocessor directive at 20%
-  User enters amount of bill
-  Compute tax, tip (memory constant), and total
-  Output amount of bill, tax, tip, and total in tabular format
+int main()
+{
+    // Initializing variables
+    string monthYear;
+    double cupertinoAmount;
+    double losAltosAmount;
+    double sunnyvaleAmount;
+    double totalCollected;
+    double countySalesTax;
+    double sales;
 
-*/
+    // Input month and year
+    cout << "Enter the month and year:\t";
+    getline(cin, monthYear);
 
-int main() {
-  // Initializing variables
-  string monthYear;
-  double cupertinoAmount;
-  double losAltosAmount;
-  double sunnyvaleAmount;
+    // Input the total amount per store
+    cout << "Enter amount collected for Cupertino store:\t";
+    cin >> cupertinoAmount;
+    cout << "Enter amount collected for Los Altos store:\t";
+    cin >> losAltosAmount;
+    cout << "Enter amount collected for Sunnyvale store:\t";
+    cin >> sunnyvaleAmount;
 
-  // Input month and year
-  cout << "Enter the month and year:\t";
-  getline(cin, monthYear);
+    // Sales variable calculating total sales
+    sales = (cupertinoAmount + losAltosAmount + sunnyvaleAmount) / (1.0 + (7.25 / 100) + (1.75 / 100));
+    // Total Sales Collected
+    totalCollected = cupertinoAmount + losAltosAmount + sunnyvaleAmount;
+    // County Sales Tax
+    countySalesTax = (cupertinoAmount * (1.75 / 100)) + (losAltosAmount * (1.75 / 100)) + (sunnyvaleAmount * (1.75 / 100));
 
-  // Input the total amount per store
-  cout << "Enter amount collected for Cupertino store:\t";
-  cin >> cupertinoAmount;
-  cout << "Enter amount collected for Los Altos store:\t";
-  cin >> losAltosAmount;
-  cout << "Enter amount collected for Sunnyvale store:\t";
-  cin >> sunnyvaleAmount;
-  
+    cout << monthYear << endl;
+    cout << totalCollected << endl;
+    cout << sales << endl;
 
-  cout << monthYear << endl;
-
-  return 0;
+    return 0;
 }
