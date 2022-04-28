@@ -18,7 +18,7 @@ int main()
     // Initializing amount of money collected and tax per store
     double cupertinoAmount, losAltosAmount, sunnyvaleAmount;
     double totalCollected, countySalesTax, stateSalesTax, sales;
-    double countyTaxRate = (2.75 / 100);
+    const double countyTaxRate = (2.75 / 100);
 
     // Input month and year
     cout << "Enter the month and year:\t";
