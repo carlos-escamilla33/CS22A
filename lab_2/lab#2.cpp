@@ -14,26 +14,24 @@ using namespace std;
 int main()
 {
     // Initializing variable that holds month and year
-    string monthYear = "April 2022";
+    string monthYear;
     // Initializing amount of money collected and tax per store
-    double cupertinoAmount = 24300;
-    double losAltosAmount = 34876;
-    double sunnyvaleAmount = 21999;
+    double cupertinoAmount, losAltosAmount, sunnyvaleAmount;
     double totalCollected, countySalesTax, stateSalesTax, sales;
     double countyTaxRate = (2.75 / 100);
 
     // Input month and year
-    // cout << "Enter the month and year:\t";
-    // getline(cin, monthYear);
+    cout << "Enter the month and year:\t";
+    getline(cin, monthYear);
 
     // Input the total amount per store
-    // cout << "Enter amount collected for Cupertino store:\t";
-    // cin >> cupertinoAmount;
-    // cout << "Enter amount collected for Los Altos store:\t";
-    // cin >> losAltosAmount;
-    // cout << "Enter amount collected for Sunnyvale store:\t";
-    // cin >> sunnyvaleAmount;
-
+    cout << "Enter amount collected for Cupertino store:\t";
+    cin >> cupertinoAmount;
+    cout << "Enter amount collected for Los Altos store:\t";
+    cin >> losAltosAmount;
+    cout << "Enter amount collected for Sunnyvale store:\t";
+    cin >> sunnyvaleAmount;
+    cout << endl;
 
     // Total Sales Collected
     totalCollected = cupertinoAmount + losAltosAmount + sunnyvaleAmount;
@@ -58,3 +56,20 @@ int main()
 
     return 0;
 }
+
+/*
+    Enter the month and year:       April 2022
+    Enter amount collected for Cupertino store:     24300
+    Enter amount collected for Los Altos store:     34876
+    Enter amount collected for Sunnyvale store:     21999
+
+    Month: April 2022
+    Total Collected:                     81175.00
+    Sales:                               74132.42
+    County Sales Tax:                     2038.64
+    State Sales Tax:                      5003.94
+    Total Sales Tax:                      7042.58
+
+    Programmed By: Carlos Rodriguez Escamilla
+    -----------------------------------------------
+*/
