@@ -13,28 +13,26 @@ using namespace std;
 
 int main()
 {
-    // Initializing location and tax variables
-    string monthYear;
-    double cupertinoAmount;
-    double losAltosAmount;
-    double sunnyvaleAmount;
-    double totalCollected;
-    double countySalesTax;
-    double stateSalesTax;
-    double sales;
+    // Initializing variable that holds month and year
+    string monthYear = "April 2022";
+    // Initializing amount of money collected and tax per store
+    double cupertinoAmount = 24300;
+    double losAltosAmount = 34876;
+    double sunnyvaleAmount = 21999;
+    double totalCollected, countySalesTax, stateSalesTax, sales;
     double countyTaxRate = (2.75 / 100);
 
     // Input month and year
-    cout << "Enter the month and year:\t";
-    getline(cin, monthYear);
+    // cout << "Enter the month and year:\t";
+    // getline(cin, monthYear);
 
     // Input the total amount per store
-    cout << "Enter amount collected for Cupertino store:\t";
-    cin >> cupertinoAmount;
-    cout << "Enter amount collected for Los Altos store:\t";
-    cin >> losAltosAmount;
-    cout << "Enter amount collected for Sunnyvale store:\t";
-    cin >> sunnyvaleAmount;
+    // cout << "Enter amount collected for Cupertino store:\t";
+    // cin >> cupertinoAmount;
+    // cout << "Enter amount collected for Los Altos store:\t";
+    // cin >> losAltosAmount;
+    // cout << "Enter amount collected for Sunnyvale store:\t";
+    // cin >> sunnyvaleAmount;
 
 
     // Total Sales Collected
@@ -47,13 +45,16 @@ int main()
     countySalesTax = sales * countyTaxRate;
     stateSalesTax = sales * STATE_TAX_RATE;
 
+    cout << setprecision(2) << fixed;
+    cout << "Month: " << monthYear << endl;
+    cout << left << setw(20) << "Total Collected:" << right << setw(25) <<  totalCollected << endl;
+    cout << left << setw(20) << "Sales:" << right << setw(25) << sales << endl;
+    cout << left << setw(20) << "County Sales Tax:" << right << setw(25) << countySalesTax << endl;
+    cout << left << setw(20) << "State Sales Tax:" << right << setw(25) << stateSalesTax << endl;
+    cout << left << setw(20) << "Total Sales Tax:" << right << setw(25) << countySalesTax + stateSalesTax << endl << endl;
 
-    cout << monthYear << endl;
-    cout << totalCollected << endl;
-    cout << sales << endl;
-    cout << countySalesTax << endl;
-    cout << stateSalesTax << endl;
-    cout << countySalesTax + stateSalesTax << endl;
+    cout << "Programmed By: Carlos Rodriguez Escamilla" << endl;
+    cout << "-----------------------------------------------" << endl;
 
     return 0;
 }
