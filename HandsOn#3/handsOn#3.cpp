@@ -22,6 +22,7 @@ int main()
     // Declare variables
     double radius;
     double area;
+    
     // Input the radius
     cout << "Enter the radius: ";
     cin >> radius;
