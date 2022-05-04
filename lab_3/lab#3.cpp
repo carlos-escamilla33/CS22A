@@ -6,5 +6,9 @@
 #include <iostream>
 
 int main () {
+    // Initalize variables
+    int tables, dellThins, dellAllInOne, keyboards, mouses;
+
+    
     return 0;
 }
