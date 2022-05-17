@@ -10,9 +10,9 @@
 using namespace std;
 
 // Prototype
-double calcWaterAllotment(int numOfPeople);
+double calcWaterAllocation(int numOfPeople);
 double calcLandscape(int monthOfYear, char residenceType);
-double calcBillTotal(double waterAllocated, double landscapeBudget);
+double calcBillTotal(double perPersonCalc, double landscapeBudget);
 double calcBudgetTotal(double waterBudget, double cubicFeet);
 
 //////////////////////////////////////////////////
@@ -45,16 +45,16 @@ int main() {
     }
 
     // Calculate Info
-    waterCalc = calcWaterAllotment(numOfResidents);
+    waterCalc = calcWaterAllocation(numOfResidents);
     landScapeCalc = calcLandscape(monthOfYear, residenceType);
     billCalc = calcBillTotal(waterCalc, landScapeCalc);
     budgetTotalCalc = calcBudgetTotal(waterCalc, cubicFeet);
 
 
     cout << setprecision(2) << fixed;
-    cout << waterCalc << endl;
-    cout << landScapeCalc << endl;
-    cout << billCalc << endl;
+    cout << "WATER BUDGET--> " << waterCalc << endl;
+    cout << "LANDSCAPE COST---> " << landScapeCalc << endl;
+    cout << "TOTAL BILL CALC----> " << billCalc << endl;
     cout << budgetTotalCalc << endl;
 
     return 0;
@@ -64,16 +64,16 @@ int main() {
 
 #define GALLONS_PER_PERSON 50.00
 
-double calcWaterAllotment(int numOfPeople) {
+double calcWaterAllocation(int numOfPeople) {
     /*Pre: numOfPeople - number of people per household
-    Post: water allocation for people
+    Post: budgetPerPerson
     Purpose: output water allocation
     */
-    double waterAllocation;
+    double waterBudget;
 
-    waterAllocation = (GALLONS_PER_PERSON * numOfPeople) * (30.00 / 748.00);
+    waterBudget = (GALLONS_PER_PERSON * numOfPeople) * (30.00 / 748.00);
 
-    return waterAllocation;
+    return waterBudget;
 } // calcBudget
 
 //////////////////////////////////////////////////
@@ -105,15 +105,15 @@ double calcLandscape(int month, char typeOfResidence) {
 
 //////////////////////////////////////////////////
 
-double calcBillTotal(double waterAllocated, double landscapeBudget) {
-    /*Pre: waterAllocated - water allocation for all people
+double calcBillTotal(double waterBudget, double landscapeBudget) {
+    /*Pre: waterBudget - water allocation for all people
       landscapeBudget - landscape cost based on month and residence type
       Post: output billTotal
       Purpose: output water allocation plus landscape budget
     */
     double billTotal;
 
-    billTotal = waterAllocated + landscapeBudget;
+    billTotal = waterBudget + landscapeBudget;
 
     return billTotal;
 } //calcBillTotal
@@ -121,7 +121,7 @@ double calcBillTotal(double waterAllocated, double landscapeBudget) {
 //////////////////////////////////////////////////
 
 double calcBudgetTotal(double waterBudget, double cubicFeet) {
-      /*Pre: billTotal - waterAllocated + landscapeBudget
+      /*Pre: billTotal - waterBudget + landscapeBudget
       cubicFeet - water volume measured in cubicFeet
       Post: output budget total
       Purpose: output cost based on cubic feet used
