@@ -12,8 +12,8 @@ using namespace std;
 // Prototype
 double calcPeopleBudget(int numOfPeople);
 double calcLandscape(int monthOfYear, char residenceType);
-double calcBudgetTotal(double perPersonCalc, double landscapeBudget);
-double calcCostTotal(double budgetTotal, double cubicFeet);
+double calcBudgetTotal(double peopleBudget, double landscapeBudget);
+double calcCostTotal(double budgetTotal, double ccfsUsed);
 
 
 //////////////////////////////////////////////////
@@ -22,7 +22,7 @@ int main() {
     // Initializing user household variables
     int numOfResidents = 4, monthOfYear = 3;
     char residenceType = 'S';
-    double peopleBudget, landscapeBudget, budgetTotal, totalCost, cubicFeet = 12.0;
+    double peopleBudget, landscapeBudget, budgetTotal, totalCost, ccfsUsed = 12.0;
 
     // Input user household info
     // cout << "Enter number of residents in household: ";
@@ -35,7 +35,7 @@ int main() {
     // cout << "Enter month as a number (1-12): ";
     // cin >> monthOfYear;
     // cout << "Enter Actual CCF (cubic feet) used: ";
-    // cin >> cubicFeet;
+    // cin >> ccfsUsed;
 
     if (residenceType != tolower(residenceType)) {
         residenceType = tolower(residenceType);
@@ -49,7 +49,7 @@ int main() {
     peopleBudget = calcPeopleBudget(numOfResidents);
     landscapeBudget = calcLandscape(monthOfYear, residenceType);
     budgetTotal = calcBudgetTotal(peopleBudget, landscapeBudget);
-    totalCost = calcCostTotal(budgetTotal, cubicFeet);
+    totalCost = calcCostTotal(budgetTotal, ccfsUsed);
 
 
     cout << setprecision(2) << fixed;
@@ -106,33 +106,35 @@ double calcLandscape(int month, char typeOfResidence) {
 
 //////////////////////////////////////////////////
 
-double calcBudgetTotal(double waterBudget, double landscapeBudget) {
-    /*Pre: waterBudget - water allocation for all people
+double calcBudgetTotal(double peopleBudget, double landscapeBudget) {
+    /*Pre: peopleBudget - budget based on number of people
       landscapeBudget - landscape based on month and residence type
       Post: budget total
-      Purpose: return water allocation plus landscape budget
+      Purpose: return people budget plus landscape budget
     */
     double budgetTotal;
 
-    budgetTotal = waterBudget + landscapeBudget;
+    budgetTotal = peopleBudget + landscapeBudget;
 
     return budgetTotal;
 } //calcBudgetTotal
 
 //////////////////////////////////////////////////
 
-double calcCostTotal(double budgetTotal, double cubicFeet) {
+double calcCostTotal(double budgetTotal, double ccfsUsed) {
       /*Pre: billTotal - waterBudget + landscapeBudget
-      cubicFeet - water volume measured in cubicFeet
+      ccfsUsed - water volume measured in cubic feet used
       Post: total cost
-      Purpose: return cost based on budget and CCF's used
+      Purpose: return cost based on budget and ccfsUsed(CCF) used
     */
+    double underBudgetCost = 1.53;
+    double overBudgetCost = 5.15;
     double totalCost;
 
-    if (cubicFeet <= budgetTotal) {
-        totalCost = (1.53 * cubicFeet) + budgetTotal;
+    if (ccfsUsed <= budgetTotal) {
+        totalCost = (budgetTotal * underBudgetCost);
     } else {
-        totalCost = (budgetTotal * 1.53) + (cubicFeet - budgetTotal) * 5.15;
+        totalCost = (budgetTotal * underBudgetCost) + ((ccfsUsed - budgetTotal) * overBudgetCost);
     }
 
     return totalCost;
