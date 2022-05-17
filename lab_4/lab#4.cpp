@@ -66,9 +66,7 @@ double calcPeopleBudget(int numOfPeople) {
     Post: people budget
     Purpose: return budget based on number of people
     */
-    double peopleBudget;
-    double daysInMonth = 30.00;
-    double gallonsOfWater = 748.00;
+    double peopleBudget, daysInMonth = 30.00, gallonsOfWater = 748.00;
     
     peopleBudget = (GALLONS_PER_PERSON * numOfPeople) * (daysInMonth / gallonsOfWater);
 
@@ -143,9 +141,7 @@ double calcCostTotal(double budgetTotal, double ccfUsed) {
     Post: total cost
     Purpose: return cost based on budget and ccfUsed(CCF) used
   */
-    double underBudgetCost = 1.53;
-    double overBudgetCost = 5.15;
-    double totalCost;
+    double underBudgetCost = 1.53, overBudgetCost = 5.15, totalCost;
 
     if (ccfUsed <= budgetTotal) {
         totalCost = (budgetTotal * underBudgetCost);
