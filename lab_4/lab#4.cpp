@@ -39,7 +39,7 @@ int main() {
     if (residenceType != tolower(residenceType)) {
         residenceType = tolower(residenceType);
     }
-    if (!(residenceType == 'a' || residenceType == 'A' || residenceType == 's' || residenceType == 'S' || residenceType == 'c' || residenceType == 'C')) {
+    if (!(residenceType == 'a' || residenceType == 's' || residenceType == 'c')) {
         cout << '"'<< residenceType << '"'  << " is not a valid input. Please try again.." << endl;
         exit(0);
     }
@@ -53,8 +53,8 @@ int main() {
 
     cout << setprecision(2) << fixed;
     cout << "WATER BUDGET--> " << waterCalc << endl;
-    cout << "LANDSCAPE COST---> " << landScapeCalc << endl;
-    cout << "TOTAL BILL CALC----> " << billCalc << endl;
+    cout << "LANDSCAPE BUDGET---> " << landScapeCalc << endl;
+    cout << "TOTAL BUDGET CALC----> " << billCalc << endl;
     cout << budgetTotalCalc << endl;
 
     return 0;
@@ -67,7 +67,7 @@ int main() {
 double calcWaterAllocation(int numOfPeople) {
     /*Pre: numOfPeople - number of people per household
     Post: budgetPerPerson
-    Purpose: output water allocation
+    Purpose: return water allocation
     */
     double waterBudget;
 
@@ -81,7 +81,7 @@ double calcWaterAllocation(int numOfPeople) {
 double calcLandscape(int month, char typeOfResidence) {
     /*Pre: month - month of the year
       typeOfResidence - single family/condo/apartment residence type
-      Post: output landscpre cost
+      Post: output landscpre budget ---> budget
       Purpose: output landscpre cost based on month and type of residence
     */
    double landscapeBudget;
@@ -108,8 +108,8 @@ double calcLandscape(int month, char typeOfResidence) {
 double calcBillTotal(double waterBudget, double landscapeBudget) {
     /*Pre: waterBudget - water allocation for all people
       landscapeBudget - landscape cost based on month and residence type
-      Post: output billTotal
-      Purpose: output water allocation plus landscape budget
+      Post: output budget total
+      Purpose: return water allocation plus landscape budget --> change to return
     */
     double billTotal;
 
@@ -120,12 +120,14 @@ double calcBillTotal(double waterBudget, double landscapeBudget) {
 
 //////////////////////////////////////////////////
 
-double calcBudgetTotal(double waterBudget, double cubicFeet) {
+double calcBudgetTotal(double waterBudget, double cubicFeet) { // change to 
       /*Pre: billTotal - waterBudget + landscapeBudget
       cubicFeet - water volume measured in cubicFeet
       Post: output budget total
       Purpose: output cost based on cubic feet used
     */
+//    if cubic feet is less than totalBudget
+// else if 12 - 10.32 
     double budgetTotal;
 
     return 0;
