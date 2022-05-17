@@ -13,35 +13,35 @@ using namespace std;
 double calcPeopleBudget(int numOfPeople);
 double calcLandscape(int monthOfYear, char residenceType);
 double calcBudgetTotal(double peopleBudget, double landscapeBudget);
-double calcCostTotal(double budgetTotal, double ccfsUsed);
-
+double calcCostTotal(double budgetTotal, double ccfUsed);
+void output(double budgetTotal, double totalCost);
 
 //////////////////////////////////////////////////
 
 int main() {
     // Initializing user household variables
-    int numOfResidents = 4, monthOfYear = 3;
-    char residenceType = 'S';
-    double peopleBudget, landscapeBudget, budgetTotal, totalCost, ccfsUsed = 12.0;
+    int numOfResidents, monthOfYear;
+    char residenceType;
+    double peopleBudget, landscapeBudget, budgetTotal, totalCost, ccfUsed;
 
     // Input user household info
-    // cout << "Enter number of residents in household: ";
-    // cin >> numOfResidents;
-    // cout << "Enter the type of residence: " << endl;
-    // cout << "S - Single-family Residence" << endl;
-    // cout << "C- Condo" << endl;
-    // cout << "A- Apartment" << endl << ": ";
-    // cin >> residenceType;
-    // cout << "Enter month as a number (1-12): ";
-    // cin >> monthOfYear;
-    // cout << "Enter Actual CCF (cubic feet) used: ";
-    // cin >> ccfsUsed;
+    cout << "Enter number of residents in household: ";
+    cin >> numOfResidents;
+    cout << "Enter the type of residence" << endl;
+    cout << "S - Single-family Residence" << endl;
+    cout << "C- Condo" << endl;
+    cout << "A- Apartment" << endl << ": ";
+    cin >> residenceType;
+    cout << "Enter month as a number (1-12): ";
+    cin >> monthOfYear;
+    cout << "Enter Actual CCF (cubic feet) used: ";
+    cin >> ccfUsed;
 
     if (residenceType != tolower(residenceType)) {
         residenceType = tolower(residenceType);
     }
     if (!(residenceType == 'a' || residenceType == 's' || residenceType == 'c')) {
-        cout << '"' << residenceType << '"'  << " is not a valid input. Please try again.." << endl;
+        cout << '"' << residenceType << '"' << " is not a valid input. Please try again.." << endl;
         exit(0);
     }
 
@@ -49,14 +49,10 @@ int main() {
     peopleBudget = calcPeopleBudget(numOfResidents);
     landscapeBudget = calcLandscape(monthOfYear, residenceType);
     budgetTotal = calcBudgetTotal(peopleBudget, landscapeBudget);
-    totalCost = calcCostTotal(budgetTotal, ccfsUsed);
+    totalCost = calcCostTotal(budgetTotal, ccfUsed);
 
-
-    cout << setprecision(2) << fixed;
-    cout << "PER PERSON CALC--> " << peopleBudget << endl;
-    cout << "LANDSCAPE BUDGET CALC---> " << landscapeBudget << endl;
-    cout << "TOTAL BUDGET CALC---->" << budgetTotal << endl;
-    cout << "TOTAL COST CALC----> " << totalCost << endl;
+    // Output calculations
+    output(budgetTotal, totalCost);
 
     return 0;
 }
@@ -71,8 +67,10 @@ double calcPeopleBudget(int numOfPeople) {
     Purpose: return budget based on number of people
     */
     double peopleBudget;
-
-    peopleBudget = (GALLONS_PER_PERSON * numOfPeople) * (30.00 / 748.00);
+    double daysInMonth = 30.00;
+    double gallonsOfWater = 748.00;
+    
+    peopleBudget = (GALLONS_PER_PERSON * numOfPeople) * (daysInMonth / gallonsOfWater);
 
     return peopleBudget;
 } // calcBudgetPerson
@@ -85,21 +83,39 @@ double calcLandscape(int month, char typeOfResidence) {
       Post: landscpre budget
       Purpose: return landscpre budget based on month and type of residence
     */
-   double landscapeBudget;
+    double landscapeBudget;
 
-   if (month == 1 || month == 2 || month == 3 || month == 4 ||
-   month == 10 || month == 11 || month == 12 && typeOfResidence == 's') {
-       landscapeBudget = 2.30;
-   } else if (month == 5 || month == 6 || month == 7 || month == 8 || month == 9 && typeOfResidence == 's') {
-       landscapeBudget = 4.25;
-   } else if (month == 1 || month == 2 || month == 3 || month == 4 || month == 10 ||
-    month == 11 || month == 12 && typeOfResidence == 'c') {
-       landscapeBudget = 0.75;
-   }  else if (month == 5 || month == 6 || month == 7 || month == 8 || month == 9 && typeOfResidence == 'c') {
-       landscapeBudget = 1.50;
-   } else {
-       landscapeBudget = 0.00;
-   }
+    // Calculate landscape based on day of the month and type of residence
+    switch(month) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 10:
+        case 11:
+        case 12:
+            if (typeOfResidence == 's') {
+                landscapeBudget = 2.30;
+            } else if (typeOfResidence == 'c') {
+                landscapeBudget = 0.75;
+            } else {
+                landscapeBudget = 0.00;
+            }
+        break;
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            if (typeOfResidence == 's') {
+                landscapeBudget = 4.25;
+            } else if (typeOfResidence == 'c') {
+                landscapeBudget = 1.50;
+            } else {
+                landscapeBudget = 0.00;
+            }
+        break;
+    }
 
     return landscapeBudget;
 } // calcLandscape
@@ -117,46 +133,56 @@ double calcBudgetTotal(double peopleBudget, double landscapeBudget) {
     budgetTotal = peopleBudget + landscapeBudget;
 
     return budgetTotal;
-} //calcBudgetTotal
+} // calcBudgetTotal
 
 //////////////////////////////////////////////////
 
-double calcCostTotal(double budgetTotal, double ccfsUsed) {
-      /*Pre: billTotal - waterBudget + landscapeBudget
-      ccfsUsed - water volume measured in cubic feet used
-      Post: total cost
-      Purpose: return cost based on budget and ccfsUsed(CCF) used
-    */
+double calcCostTotal(double budgetTotal, double ccfUsed) {
+    /*Pre: budgetTotal - waterBudget + landscapeBudget
+    ccfUsed - water volume measured in cubic feet used
+    Post: total cost
+    Purpose: return cost based on budget and ccfUsed(CCF) used
+  */
     double underBudgetCost = 1.53;
     double overBudgetCost = 5.15;
     double totalCost;
 
-    if (ccfsUsed <= budgetTotal) {
+    if (ccfUsed <= budgetTotal) {
         totalCost = (budgetTotal * underBudgetCost);
-    } else {
-        totalCost = (budgetTotal * underBudgetCost) + ((ccfsUsed - budgetTotal) * overBudgetCost);
+    }
+    else {
+        totalCost = (budgetTotal * underBudgetCost) + ((ccfUsed - budgetTotal) * overBudgetCost);
     }
 
     return totalCost;
 }
 
+//////////////////////////////////////////////////
+
+void output(double budgetTotal, double totalCost) {
+    /*Pre: budgetTotal - waterBudget + landscapeBudget
+    totalCost - cost based on budget and cubic feet(CCF) used
+   Post: nothing
+   Purpose: output budget total, and total cost
+   */
+    cout << setprecision(2) << fixed;
+    cout << endl;
+    cout << "Budget for people and landscape: " << budgetTotal << endl;
+    cout << "Total Cost:$ " << totalCost << endl;
+
+    return;
+}
 
 
+/*
+    Enter the type of residence
+    S - Single-family Residence
+    C- Condo
+    A- Apartment
+    : S
+    Enter month as a number (1-12): 3
+    Enter Actual CCF (cubic feet) used: 12.0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Budget for people and landscape: 10.32
+    Total Cost:$ 24.44
+*/
