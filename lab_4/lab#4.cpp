@@ -171,6 +171,7 @@ void output(double budgetTotal, double totalCost) {
 
 
 /*
+    Enter number of residents in household: 4
     Enter the type of residence
     S - Single-family Residence
     C- Condo
