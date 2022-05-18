@@ -20,22 +20,22 @@ void output(double budgetTotal, double totalCost);
 
 int main() {
     // Initializing user household variables
-    int numOfResidents, monthOfYear;
-    char residenceType;
-    double peopleBudget, landscapeBudget, budgetTotal, totalCost, ccfUsed;
+    int numOfResidents = 4, monthOfYear = 3;
+    char residenceType = 'S';
+    double peopleBudget, landscapeBudget, budgetTotal, totalCost, ccfUsed = 10;
 
     // Input user household info
-    cout << "Enter number of residents in household: ";
-    cin >> numOfResidents;
-    cout << "Enter the type of residence" << endl;
-    cout << "S - Single-family Residence" << endl;
-    cout << "C- Condo" << endl;
-    cout << "A- Apartment" << endl << ": ";
-    cin >> residenceType;
-    cout << "Enter month as a number (1-12): ";
-    cin >> monthOfYear;
-    cout << "Enter Actual CCF (cubic feet) used: ";
-    cin >> ccfUsed;
+    // cout << "Enter number of residents in household: ";
+    // cin >> numOfResidents;
+    // cout << "Enter the type of residence" << endl;
+    // cout << "S - Single-family Residence" << endl;
+    // cout << "C- Condo" << endl;
+    // cout << "A- Apartment" << endl << ": ";
+    // cin >> residenceType;
+    // cout << "Enter month as a number (1-12): ";
+    // cin >> monthOfYear;
+    // cout << "Enter Actual CCF (cubic feet) used: ";
+    // cin >> ccfUsed;
 
     if (residenceType != tolower(residenceType)) {
         residenceType = tolower(residenceType);
@@ -144,7 +144,7 @@ double calcCostTotal(double budgetTotal, double ccfUsed) {
     double underBudgetCost = 1.53, overBudgetCost = 5.15, totalCost;
 
     if (ccfUsed <= budgetTotal) {
-        totalCost = (budgetTotal * underBudgetCost);
+        totalCost = ccfUsed * underBudgetCost;
     }
     else {
         totalCost = (budgetTotal * underBudgetCost) + ((ccfUsed - budgetTotal) * overBudgetCost);
