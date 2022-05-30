@@ -11,7 +11,7 @@ using namespace std;
 
 //Function prototypes
 void signature(void);
-double calcDiscount(double);
+double calcDiscount(double&);
 
 int main()
 {
@@ -34,7 +34,7 @@ int main()
  return 0;
 }
 ///////////////////////////////////////////////////////////////
-double calcDiscount(double owe)
+double calcDiscount(double& owe)
 {
  /*Pre: owe - amount owed
  Post: Amount of discount
@@ -49,5 +49,12 @@ double calcDiscount(double owe)
 }//////////////////////////////////////////////////////////
 void signature()
 {
- cout << "Programmed by: " << " ";
+ cout << "Programmed by: " << "Carlos Rodriguez Escamilla" << endl;
 }
+
+
+/*
+Enter amount owed: 100
+Amount of Discount: 10.00
+Amount Owed: 90.00
+*/
