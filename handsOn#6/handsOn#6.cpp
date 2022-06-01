@@ -36,7 +36,7 @@ int main()
 ///////////////////////////////////////////////////////////////
 double calcDiscount(double& owe)
 {
- /*Pre: owe - amount owed
+ /*Pre: owe - reference to amount owed
  Post: Amount of discount
  Purpose: calculate discount and update amount owed to reflect discount*/
  
