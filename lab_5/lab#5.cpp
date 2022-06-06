@@ -6,11 +6,13 @@
 
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 using namespace std;
 
 // Prototype
 void userInfo(double &salesPrice, double &interestRate, int &yearsOfLoan);
-void homeCalcInfo(double &dwnPymt, double &amtOfLoan, double &mortagePymt);
+void calcMonthlyCosts(double &dwnPymt, double &amtOfLoan, double &mortagePymt, int yrsOfLoan);
+void calcDownLoanMortage(double &dwnPymt, double &amtOfLoan, double &mortagePymt);
 
 
 // Preprocessor statements
@@ -21,13 +23,15 @@ void homeCalcInfo(double &dwnPymt, double &amtOfLoan, double &mortagePymt);
 int main() {
     // Initializing variables
     const double downPymtPercentage = 0.20;
-    double sellingPrice, rateOfInterest, downPayment, amountOfLoan, mortagePymt;
+    double sellingPrice, rateOfInterest, amountOfLoan, mortagePymt;
+    double downPayment;
     int numYearsLoan;
 
-    // Call user info function
+    // Call user info function and home calculations function
     userInfo(sellingPrice, rateOfInterest, numYearsLoan);
+    calcMonthlyCosts(downPayment, amountOfLoan, mortagePymt, numYearsLoan);
 
-    // Call 
+    cout << "MORTAGE PAYMENT: " << mortagePymt << endl;
 
     return 0;
 }
@@ -51,6 +55,26 @@ void userInfo(double &salePrice, double &interestRate, int &yearsOfLoan) {
     return;
 }
 
-void homeCalcInfo(double &dwnPymt, double &amtOfLoan, double &mortagePymt) {
+void calcMonthlyCosts(double &dwnPymt, double &amtOfLoan, double &mortagePymt, int yrsOfLoan) {
+     /*Pre: 
+    dwnPymt - reference to downPayment
+    amtOfLoan - reference to amountOfLoan
+    mortagePymt - reference to mortagePymt
+    yrsOfLoan - total number of years left to pay off home loan
+    Post: nothing
+    Purpose: Calculate home down payment, amount of loan, and mortage payment
+   */
+
+//   Calaculate down payment, amount of loan, and mortage payment
+  calcDownLoanMortage(dwnPymt, amtOfLoan, mortagePymt);
+
+  
+
+  return;
+
+}
+
+
+void calcDownLoanMortage(double &dwnPymt, double &amtOfLoan, double &mortagePymt) {
     
 }
