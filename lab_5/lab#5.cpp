@@ -10,6 +10,8 @@ using namespace std;
 
 // Prototype
 void userInfo(double &salesPrice, double &interestRate, int &yearsOfLoan);
+void homeCalcInfo(double &dwnPymt, double &amtOfLoan, double &mortagePymt);
+
 
 // Preprocessor statements
 #define TAX_RATE 0.0125
@@ -19,11 +21,13 @@ void userInfo(double &salesPrice, double &interestRate, int &yearsOfLoan);
 int main() {
     // Initializing variables
     const double downPymtPercentage = 0.20;
-    double sellingPrice, rateOfInterest;
+    double sellingPrice, rateOfInterest, downPayment, amountOfLoan, mortagePymt;
     int numYearsLoan;
 
     // Call user info function
     userInfo(sellingPrice, rateOfInterest, numYearsLoan);
+
+    // Call 
 
     return 0;
 }
@@ -45,4 +49,8 @@ void userInfo(double &salePrice, double &interestRate, int &yearsOfLoan) {
     cin >> yearsOfLoan;
 
     return;
+}
+
+void homeCalcInfo(double &dwnPymt, double &amtOfLoan, double &mortagePymt) {
+    
 }
