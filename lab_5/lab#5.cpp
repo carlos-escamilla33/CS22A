@@ -154,25 +154,25 @@ void output(double salesPrice, double mortagePymt, double dwnPymt, double amtLoa
 } // output
 
 /*
-   MONTHLY COST OF HOUSE
+MONTHLY COST OF HOUSE
 
-    SELLING PRICE: $600000
-    INTEREST RATE: 4
-    DURATION OF LOAN(YEARS): 30
-    SELLING PRICE                   $600000.00
-    DOWN PAYMENT                     120000.00
-    AMOUNT OF LOAN                   480000.00
-    INTEREST RATE                        4.00%
-    TAX RATE                             1.25%
-    DURATION OF LOAN (YEARS)             30.00
+SELLING PRICE: $600000
+INTEREST RATE: 4
+DURATION OF LOAN(YEARS): 30
+SELLING PRICE                   $600000.00
+DOWN PAYMENT                     120000.00
+AMOUNT OF LOAN                   480000.00
+INTEREST RATE                        4.00%
+TAX RATE                             1.25%
+DURATION OF LOAN (YEARS)             30.00
 
-    MONTHLY PAYMENT
-        MORTAGE PAYMENT               2291.59
-        UTILITIES                      300.00
-        PROPERTY TAXES                 200.00
-        INSURANCE                       45.83
-                                    ----------
-                                    $  2837.43
+MONTHLY PAYMENT
+     MORTAGE PAYMENT               2291.59
+     UTILITIES                      300.00
+     PROPERTY TAXES                 200.00
+     INSURANCE                       45.83
+                                ----------
+                                $  2837.43
 
-    Programmed By: Carlos Rodriguez Escamilla
+Programmed By: Carlos Rodriguez Escamilla
 */
