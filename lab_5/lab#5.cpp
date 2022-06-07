@@ -116,6 +116,16 @@ void calcDownLoanMortage(double &dwnPymt, double &amtOfLoan, double &mortagePymt
 
 } // calcDownLoanMortage
 
+void signature() {
+    /*Pre: nothing
+   Post: nothing
+   Purpose: output signature
+   */
+    cout << "Programmed By: Carlos Rodriguez Escamilla" << endl;
+
+    return;
+} // signature
+
 void output(double salesPrice, double mortagePymt, double dwnPymt, double amtLoan, double interestRate, double yrsLoan, double propertyTaxes, double monthlyPymt) {
     /*Pre: dwnPymt - amount given based off the down payment percentage
     amtLoan - amount of money left to pay after giving down payment
@@ -148,7 +158,7 @@ void output(double salesPrice, double mortagePymt, double dwnPymt, double amtLoa
 
     cout << endl;
 
-    cout << "Programmed By: Carlos Rodriguez Escamilla" << endl;
+    signature();
 
     return;
 } // output
