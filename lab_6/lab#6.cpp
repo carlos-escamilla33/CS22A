@@ -9,6 +9,9 @@
 #include <string.h>
 using namespace std;
 
+// Protoype
+void calcCompositeIdx(string);
+
 int main() {
     // Declare variable
     string word;
@@ -33,4 +36,11 @@ int main() {
 
 
     return 0;
+}
+
+void calcCompositeIdx(string word) {
+    /*Pre
+    Post
+    
+    */
 }
