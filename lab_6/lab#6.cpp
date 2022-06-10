@@ -5,21 +5,22 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include <string.h>
 using namespace std;
 
 int main() {
+    // Declare variable
+    string word;
+
     // Initializing pointers to file
     ifstream fileIn;
-    ofstream fileOut;
-    string letter = "jello";
 
-//    fileIn.open("Lab6_StateCOL.txt");
-// //    while (!fileIn.eof()) {
-// //        fileIn 
-// //    }
-
-    cout << letter << endl;
+    fileIn.open("Lab6_StateCOL.txt");
+    if(fileIn.fail()) {
+        cout << "ERROR IN READING FILE..." << endl;
+        exit(100);
+    }
 
 
     return 0;
