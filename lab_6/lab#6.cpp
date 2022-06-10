@@ -22,6 +22,15 @@ int main() {
         exit(100);
     }
 
+    // Loop through words in file
+    while (!fileIn.eof()) {
+        cout << word << endl;
+        getline(fileIn, word);
+    }
+
+    // Closing file
+    fileIn.close();
+
 
     return 0;
 }
