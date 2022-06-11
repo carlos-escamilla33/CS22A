@@ -23,23 +23,24 @@ int main()
     char ch='\n';
 
     fileIn.open("Lab6_StateCOL.txt");
+
+    // If could not open file then send error message
     if (!fileIn.is_open())
     {
         cout << "Could not open file..." << endl;
         exit(100);
     }
-
-    cout << "Reading and printing file info..." << endl;
-    // fileIn >> state;
-    // fileIn >> groceries >> house >> utilities >> transportation >> health >> miscellaneous;
+    // Reading file while it is not empty
     while (!fileIn.eof()) {
-        if (getline(fileIn, state)) {
-            // fileIn >> line;
+        // Read line of the file
+        getline(fileIn, state);
+        // If the line of the file has a length enter if statement
+        if (state.length()) {
             fileIn >> groceries >> house >> utilities >> transportation >> health >> miscellaneous;
             fileIn.ignore(100,ch); 
             cout << setprecision(1) << fixed;
             cout << endl;
-            cout << "State Name:\t" << state << endl;
+            cout << "State Name: " << state << endl;
             cout << groceries << " " << house << " " << utilities << " " << transportation << " " << health << " " << miscellaneous << endl;
             // calcCompositeIdxs(groceries, house, utilities, transportation, health, miscellaneous);
         }
