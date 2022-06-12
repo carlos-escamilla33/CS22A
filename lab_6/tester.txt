@@ -1,0 +1,105 @@
+Mississippi 
+	85.046
+Hawaii 
+	186.979
+Nebraska 
+	93.971
+Tennessee 
+	89.455
+West Virginia 
+	88.768
+Indiana 
+	90.97
+California 
+	148.367
+New Mexico 
+	91.083
+South Carolina 
+	94.197
+Maryland 
+	120.431
+Arkansas 
+	90.224
+Minnesota 
+	98.923
+Louisiana 
+	92.834
+South Dakota 
+	96.514
+Nevada 
+	104.742
+Massachusetts 
+	133.494
+Maine 
+	111.787
+District of Columbia 
+	152.791
+Alabama 
+	88.015
+Utah 
+	100.833
+Rhode Island 
+	114.739
+Vermont 
+	114.875
+Kansas 
+	87.924
+Wisconsin 
+	96.497
+Connecticut 
+	119.186
+Delaware 
+	106.159
+New Jersey 
+	117.756
+Idaho 
+	97.08
+North Carolina 
+	96.845
+Georgia 
+	89.382
+Pennsylvania 
+	100.323
+Colorado 
+	105.328
+Montana 
+	100.592
+Wyoming 
+	92.745
+Missouri
+	91.305
+Washington 
+	113.706
+Alaska 
+	128.99
+Iowa 
+	90.545
+Kentucky 
+	92.08
+New Hampshire 
+	111.612
+New York 
+	143.979
+Oregon 
+	128.425
+Arizona 
+	106.634
+Michigan 
+	91.401
+Illinois 
+	90.722
+Texas 
+	92.289
+Ohio 
+	92.366
+Florida 
+	101.548
+North Dakota 
+	99.194
+Oklahoma 
+	88.357
+Virginia 
+	98.105
+
+Min Idx: Mississippi 	 85.0
+Max Idx: Hawaii 	187.0
