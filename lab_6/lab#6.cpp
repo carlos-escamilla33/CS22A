@@ -12,21 +12,21 @@
 using namespace std;
 
 // Protoype
-string calcCompositeIdxs(double groceries, double housing, double utilities, double transportation, double health, double miscellaneous);
+double calcCompositeIdxs(double groceries, double housing, double utilities, double transportation, double health, double miscellaneous);
 
-int main()
-{
+int main() {
     // Declare variable
     string state, line;
     double groceries, house, utilities, transportation, health, miscellaneous;
+    double compositeIdx, lowestIdx = 99, highestIdx = 0;
+    string lowestIdxState, highestIdxState;
     ifstream fileIn;
     char ch='\n';
 
     fileIn.open("Lab6_StateCOL.txt");
 
     // If could not open file then send error message
-    if (!fileIn.is_open())
-    {
+    if (!fileIn.is_open()) {
         cout << "Could not open file..." << endl;
         exit(100);
     }
@@ -36,35 +36,51 @@ int main()
         getline(fileIn, state);
         // If the line of the file has a length enter if statement
         if (state.length()) {
+            // Give value to double variables
             fileIn >> groceries >> house >> utilities >> transportation >> health >> miscellaneous;
-            fileIn.ignore(100,ch); 
-            cout << setprecision(1) << fixed;
-            cout << endl;
-            cout << "State Name: " << state << endl;
-            cout << groceries << " " << house << " " << utilities << " " << transportation << " " << health << " " << miscellaneous << endl;
-            // calcCompositeIdxs(groceries, house, utilities, transportation, health, miscellaneous);
+            fileIn.ignore(100,ch);
+            // cout << setprecision(1) << fixed;
+            // cout << endl;
+            // cout << "State Name: " << state << endl;
+            // cout << groceries << " " << house << " " << utilities << " " << transportation << " " << health << " " << miscellaneous << endl;
+
+            // calculate the composite indexes of each state
+            compositeIdx = calcCompositeIdxs(groceries, house, utilities, transportation, health, miscellaneous);
+
+            if (compositeIdx < lowestIdx) {
+                lowestIdx = compositeIdx;
+                lowestIdxState = state;
+            } else if (compositeIdx > highestIdx) {
+                highestIdx = compositeIdx;
+                highestIdxState = state;
+            }
         }
     }
 
     // Closing file
     fileIn.close();
+    cout << endl;
+    cout << setprecision(1) << fixed; 
+    cout << "LOWEST IDX----> " << lowestIdxState << endl;
+    cout << lowestIdx << endl;
+    cout << "HIGHEST IDX---> " << highestIdxState << endl;
+    cout << highestIdx << endl;
 
     return 0;
 }
 
-string calcCompositeIdxs(double groceries, double housing, double utilities, double transportation, double health, double miscellaneous)
-{
-    /*Pre:fileLineInfo - line of the file
+double calcCompositeIdxs(double groceries, double housing, double utilities, double transportation, double health, double miscellaneous) {
+    /*Pre: groceries -
+    housing - 
+    utilities - 
+    transportation - 
+    health - 
+    miscellaneous - 
     Post: nothing
-    Purpose: return the calculatedhousing of each state;
-
+    Purpose: return the calculated index of each state
     */
-    string calculatedStateIdxs = "idfdsaf";
-
-    // for (int i = 0; i <housing.length(); i++)
-    // {
-        // cout << groceries << housing << utilities << transportation << health << miscellaneous << endl;
-    // }
-
+   double calculatedStateIdxs = (0.13 * groceries) + (0.29 * housing) + (0.10 * utilities) +
+    (0.11 * transportation) + (0.12 * health) + (0.23 * miscellaneous);
+    
     return calculatedStateIdxs;
 }
