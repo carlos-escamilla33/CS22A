@@ -1,7 +1,7 @@
-/*
-    Carlos Rodriguez Escamilla
-    Hands On #7 - Reversing elements of an array
-*/
+// /*
+//     Carlos Rodriguez Escamilla
+//     Hands On #7 - Reversing elements of an array
+// */
 
 #include <iostream>
 using namespace std;
@@ -10,7 +10,7 @@ using namespace std;
 void backwards(int [], int);
 
 int main() {
-    int arr[] = {2,8, 17, 3, 5, 16};
+    int arr[] = {2,8,17,3,5,16};
     int i;
 
     backwards(arr, 6);
@@ -27,12 +27,12 @@ void backwards(int array[], int number) {
             number - number of elements in the array that have values
     Post: Nothing
     Purpose: Reverse the order of the elements of an array */
-    int i; int temp; int j;
+    int i; int temp; int j; int numberOfSwaps = number / 2;
     
-    for (i = 0; i < number; i++) {
+    for (i = 0; i < numberOfSwaps; i++) {
         temp = array[i];
         array[i] = array[number - 1 - i];
-        temp = array[number - 1 - i];
+        array[number - 1 - i] = temp;
     }
 
     return;
