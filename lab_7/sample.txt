@@ -1,0 +1,28 @@
+University                                                                 State     
+
+Princeton University                        
+Harvard University                          
+Yale University                             
+Columbia University                         
+Stanford University                         
+University of Chicago                       
+Massachusetts Institute of Technology       
+Duke University                             
+University of Pennsylvania                  
+California Institute of Technology          
+Dartmouth College                           
+Johns Hopkins University                    
+Northwestern University                     
+Washington University in St. Louis          
+Cornell University                          
+Brown University                            
+University of Notre Dame                    
+Vanderbilt University                       
+Rice University                             
+University of California-Berkeley           
+Emory University                            
+Georgetown University                       
+University of California-Los Angeles        
+University of Virginia                      
+Carnegie Mellon University                  
+University of Southern California           
