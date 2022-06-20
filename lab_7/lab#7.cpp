@@ -15,15 +15,17 @@ void outputUniversityData(string[], string[], string[], int[], int[], double[], 
 double averageTuition(int[], int);
 void maxTuition(int[], string[], int);
 void collegesByState(string[], string[], string[], int[], int[], double[], double[], int, ofstream &);
-string lowestUniTuition(string[], int[], int);
+int lowestUniTuition(string[], int[], int);
+void sortByGradInSixYrs(string[], string[], string[], int[], int[], double[], double[], int);
 
 int main() {
-    // Initialize school info variables
+    // Initialize variables
     int arrSize = 1000, dataLength;
     string universities[arrSize], states[arrSize], cities[arrSize];
     int yrlyTuition[arrSize], enrollments[arrSize];
     double avgFreshmanRetention[arrSize], gradsInSixYrs[arrSize];
     double tuitionAvg;
+    int lowestTuition;
 
     // Initialize Reference to file
     ifstream fileIn;
@@ -39,6 +41,7 @@ int main() {
         exit(1);
     }
 
+    // Checking fileOut for corrupt/unusable data
     if (!fileOut.is_open()) {
         cout << "Error reading output file..." << endl;
         exit(1);
@@ -47,15 +50,15 @@ int main() {
     // Get univeristy data
     dataLength = inputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, fileIn);
 
-    // Output
+    // Output University data
     outputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Calculate Tuition Average
-    tuitionAvg = averageTuition(yrlyTuition, dataLength);
+    // tuitionAvg = averageTuition(yrlyTuition, dataLength);
 
     // Ouput the average tuition for all universities
-    cout << setprecision(2) << fixed;
-    cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
+    // cout << setprecision(2) << fixed;
+    // cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
 
     // Find user schools they can afford
     // maxTuition(yrlyTuition, universities, dataLength);
@@ -63,12 +66,26 @@ int main() {
     // Write colleges found by state to fileOut
     // collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
+    // Find universities with the lowest tuition
+    lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
 
+    cout << endl
+         << "Universities with the lowest tuition cost......" << endl;
+    cout << setprecision(2) << fixed << endl;
+    for (int i = 0; i < dataLength; i++) {
+        if (yrlyTuition[i] == lowestTuition) {
+            cout << universities[i] << endl;
+            cout << "Yearly tuition: " << '$' << yrlyTuition[i] << endl
+                 << endl;
+        }
+    }
+
+    // Sorting universities
+    sortByGradInSixYrs(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
 
     // Close files
     fileIn.close();
     fileOut.close();
-
 
     return 0;
 }
@@ -130,16 +147,15 @@ void outputUniversityData(string universities[], string states[], string cities[
 
     // Format headers of output file
     fileOut << setprecision(2) << fixed;
-    fileOut << setw(38) << left << "University" << setw(6) << right << "State" << setw(12) << right << "Tuition" << setw(16) <<
-     right << "Enrollment" << setw(20) << right << "%Fresh Succeed" << setw(26) << right << "%Graduate in six years" << endl
+    fileOut << setw(38) << left << "University" << setw(6) << right << "State" << setw(12) << right << "Tuition" <<
+     setw(16) << right << "Enrollment" << setw(20) << right << "%Fresh Succeed" << setw(26) << right << "%Graduate in six years" << endl
             << endl;
 
     // Iterate through university data
     for (int i = 0; i < dataLength; i++) {
         fileOut << universities[i];
-        fileOut << setw(40) << ' ' << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) <<
-         right << enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) <<
-          right << gradsInSixYrs[i] * 100 << '%' << endl;
+        fileOut << setw(40) << ' ' << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) << right <<
+         enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
     }
 
     return;
@@ -190,7 +206,8 @@ void maxTuition(int tuition[], string universities[], int size) {
     cin >> userTutition;
 
     // Iterate through schools
-    cout << "These are the schools that are in your budget..." << endl << endl;
+    cout << "These are the schools that are in your budget..." << endl
+         << endl;
     for (int i = 0; i < size; i++) {
         // if the school tuition is less than or equal to user input output university name
         if (tuition[i] <= userTutition) {
@@ -206,20 +223,20 @@ void maxTuition(int tuition[], string universities[], int size) {
 /////////////////////////////////////////////////////////////////////////
 
 void collegesByState(string universities[], string states[], string cities[], int yrlyTutition[],
-                    int enrollments[], double avgFreshmanRetention[], double gradsInSixYrs[], int size, ofstream &fileOut) {
-     /*
-      Pre: universities - reference to universities array
-      state - reference to states array
-      cities - reference to cities array
-      yrlyTutition - reference to yrlyTuition array
-      enrollments - reference to enrollment array
-      avgFreshmanRetention - reference to avgFreshmanRetention
-      gradsInSixYrs - reference to gradsInSixYrs
-      fileOut - reference to fileOut
-      Post: nothing
-      Purpose: output all information of colleges within user selected state
-  */                    
-    
+                     int enrollments[], double avgFreshmanRetention[], double gradsInSixYrs[], int size, ofstream &fileOut) {
+    /*
+     Pre: universities - reference to universities array
+     state - reference to states array
+     cities - reference to cities array
+     yrlyTutition - reference to yrlyTuition array
+     enrollments - reference to enrollment array
+     avgFreshmanRetention - reference to avgFreshmanRetention
+     gradsInSixYrs - reference to gradsInSixYrs
+     fileOut - reference to fileOut
+     Post: nothing
+     Purpose: output all information of colleges within user selected state
+ */
+
     // Initialize variables
     string userState;
     string foundState;
@@ -231,13 +248,15 @@ void collegesByState(string universities[], string states[], string cities[], in
 
     // Capitalize user input
     for (int j = 0; j < 2; j++) {
-        capState+=toupper(userState[j]);
+        capState += toupper(userState[j]);
     }
 
     // Seperate user school information from school data info
-    fileOut << "-------------------------------------------------------------------------" <<
-    "---------------------------------------------" << endl << endl;
-    fileOut << "Search results for the state of " << capState << "....." << endl << endl;
+    fileOut << "-------------------------------------------------------------------------"
+            << "---------------------------------------------" << endl
+            << endl;
+    fileOut << "Search results for the state of " << capState << "....." << endl
+            << endl;
 
     // Iterate through states
     for (int i = 0; i < size; i++) {
@@ -247,11 +266,10 @@ void collegesByState(string universities[], string states[], string cities[], in
             foundState = states[i];
             fileOut << universities[i];
             fileOut << setw(40) << ' ' << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) <<
-            right << enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) <<
-            right << gradsInSixYrs[i] * 100 << '%' << endl;
+             right << enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
         }
     }
-    
+
     cout << endl;
 
     // If there is no state found tell user there is no match
@@ -264,29 +282,67 @@ void collegesByState(string universities[], string states[], string cities[], in
 
 /////////////////////////////////////////////////////////////////////////
 
-string lowestUniTuition(string states[], int tuition[], int size) {
+int lowestUniTuition(string states[], int tuition[], int size) {
     /*
-      Pre: universities - reference to universities array
+      Pre: states- reference to states array
       tuition - reference to yrlyTuition array
-        size - length of data
+      size - length of data
       Post: nothing
       Purpose: return the lowest university tuition
-  */ 
+  */
 
     // Initializing variables
-    string universitySubscript;
     int lowestTuition = tuition[0];
-
 
     // Iterate over tuition array
     for (int i = 0; i < size; i++) {
         if (tuition[i] < lowestTuition) {
             lowestTuition = tuition[i];
-            
         }
     }
 
-    return universitySubscript;
+    // Return university subscript
+    return lowestTuition;
+} // lowestUniTuition
 
+/////////////////////////////////////////////////////////////////////////
+
+void sortByGradInSixYrs(string universities[], string states[], string cities[], int yrlyTutition[],
+                     int enrollments[], double avgFreshmanRetention[], double gradsInSixYrs[], int size) {
+    /*
+        Pre: universities - reference to universities array
+        state - reference to states array
+        cities - reference to cities array
+        yrlyTutition - reference to yrlyTuition array
+        enrollments - reference to enrollment array
+        avgFreshmanRetention - reference to avgFreshmanRetention
+        gradsInSixYrs - reference to gradsInSixYrs
+        size - length of data
+        Post: nothing
+        Purpose: sort gradsInSixYrs array in decending order using selection sort
+    */
+
+    // Initializing variables
+    // double temp;
+
+    // Iterate through gradsInSixYrs data
+    for (int i = 0; i < size-1; i++) {
+        // Find the minimum element in
+        // unsorted array
+        int minIdx = i;
+        for (int j = i+1; j < size; j++) {
+        if (gradsInSixYrs[j] < gradsInSixYrs[minIdx])
+            minIdx = j;
+ 
+        // Swap the found minimum element
+        // with the first element
+            double temp = gradsInSixYrs[minIdx];
+            gradsInSixYrs[minIdx] = gradsInSixYrs[i];
+            gradsInSixYrs[i] = temp;
+        }
+
+        cout << gradsInSixYrs[i] << ' ' << endl;
+    }
+
+    return;
 }
-
