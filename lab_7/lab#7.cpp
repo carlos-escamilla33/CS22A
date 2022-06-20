@@ -98,18 +98,20 @@ void outputUniversityData(string universities[], string states[], string cities[
       gradsInSixYrs - reference to gradsInSixYrs
       fileIn - reference to fileIn
       Post: nothing
-      Purpose: ouput unversity data from arrays
+      Purpose: ouput and format unversity data
   */
 
-    // Iterate through university data
+    // Format headers of output file
     fileOut << setprecision(2) << fixed;
     fileOut << setw(38) << left << "University" << setw(6) << right << "State" <<
-     setw(12) << right << "Tuition" << setw(16) << right <<"Enrollment" <<  endl << endl;
+     setw(12) << right << "Tuition" << setw(16) << right <<"Enrollment" <<
+     setw(20) << right << "%Fresh Succeed" << setw(26) << right << "%Graduate in six years" << endl << endl;
+    
+    // Iterate through university data
     for (int i = 0; i < dataLength; i++) {
         fileOut << universities[i];
-        fileOut <<  setw(40) << ' ' << setw(5) << left << states[i] << setw(14) << right << yrlyTutition[i]<< setw(14) << right << enrollments[i] * 100 <<
-         setw(14) << right << avgFreshmanRetention[i] * 100 << '%' << setw(16) << right << gradsInSixYrs[i] * 100 << '%' << endl;
-        // fileOut << setw(20) << states[i];
+        fileOut <<  setw(40) << ' ' << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i]<< setw(14) << right << enrollments[i] * 100 <<
+         setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
     }
 
     return;

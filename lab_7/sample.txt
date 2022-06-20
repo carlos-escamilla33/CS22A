@@ -1,28 +1,28 @@
-University                             State     Tuition      Enrollment
+University                             State     Tuition      Enrollment      %Fresh Succeed    %Graduate in six years
 
-Princeton University                                         NJ            41820        801400         98.00%           97.00%
-Harvard University                                        MA            43838       1988200         97.00%           97.00%
-Yale University                                        CT            45800       1210900         99.00%           98.00%
-Columbia University                                        NY            51008       2360600         99.00%           96.00%
-Stanford University                                        CA            44757       1813600         98.00%           96.00%
-University of Chicago                                        IL            48253       1253900         99.00%           93.00%
-Massachusetts Institute of Technology                                        MA            45016       1130100         98.00%           93.00%
-Duke University                                        NC            47488       1546500         97.00%           94.00%
-University of Pennsylvania                                        PA            47668       2135800         98.00%           96.00%
-California Institute of Technology                                        CA            43362        218100         97.00%           93.00%
-Dartmouth College                                        NH            48108        634200         98.00%           95.00%
-Johns Hopkins University                                        MD            47060       2105200         97.00%           93.00%
-Northwestern University                                        IL            47251       2099700         97.00%           94.00%
-Washington University in St. Louis                                        MO            46467       1403200         97.00%           94.00%
-Cornell University                                        NY            47286       2159300         97.00%           93.00%
-Brown University                                        RI            47434        894300         98.00%           94.00%
-University of Notre Dame                                        IN            46237       1212400         98.00%           95.00%
-Vanderbilt University                                        TN            43838       1275700         97.00%           93.00%
-Rice University                                        TX            40566        662800         97.00%           91.00%
-University of California-Berkeley                                        CA            25064       3620400         97.00%           91.00%
-Emory University                                        GA            45008       1451300         95.00%           91.00%
-Georgetown University                                        DC            46744       1784900         96.00%           92.00%
-University of California-Los Angeles                                        CA            25064       4219000         97.00%           90.00%
-University of Virginia                                        VA            42184       2346400         97.00%           93.00%
-Carnegie Mellon University                                        PA            48786       1299100         95.00%           88.00%
-University of Southern California                                        CA            48280       4136800         97.00%           91.00%
+Princeton University                                         NJ        41820        801400             98.00%             97.00%
+Harvard University                                        MA        43838       1988200             97.00%             97.00%
+Yale University                                        CT        45800       1210900             99.00%             98.00%
+Columbia University                                        NY        51008       2360600             99.00%             96.00%
+Stanford University                                        CA        44757       1813600             98.00%             96.00%
+University of Chicago                                        IL        48253       1253900             99.00%             93.00%
+Massachusetts Institute of Technology                                        MA        45016       1130100             98.00%             93.00%
+Duke University                                        NC        47488       1546500             97.00%             94.00%
+University of Pennsylvania                                        PA        47668       2135800             98.00%             96.00%
+California Institute of Technology                                        CA        43362        218100             97.00%             93.00%
+Dartmouth College                                        NH        48108        634200             98.00%             95.00%
+Johns Hopkins University                                        MD        47060       2105200             97.00%             93.00%
+Northwestern University                                        IL        47251       2099700             97.00%             94.00%
+Washington University in St. Louis                                        MO        46467       1403200             97.00%             94.00%
+Cornell University                                        NY        47286       2159300             97.00%             93.00%
+Brown University                                        RI        47434        894300             98.00%             94.00%
+University of Notre Dame                                        IN        46237       1212400             98.00%             95.00%
+Vanderbilt University                                        TN        43838       1275700             97.00%             93.00%
+Rice University                                        TX        40566        662800             97.00%             91.00%
+University of California-Berkeley                                        CA        25064       3620400             97.00%             91.00%
+Emory University                                        GA        45008       1451300             95.00%             91.00%
+Georgetown University                                        DC        46744       1784900             96.00%             92.00%
+University of California-Los Angeles                                        CA        25064       4219000             97.00%             90.00%
+University of Virginia                                        VA        42184       2346400             97.00%             93.00%
+Carnegie Mellon University                                        PA        48786       1299100             95.00%             88.00%
+University of Southern California                                        CA        48280       4136800             97.00%             91.00%
