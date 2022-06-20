@@ -6,11 +6,12 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <string.h>
+#include <string>
 using namespace std;
 
 int inputUniversityData(string[], string[], string[], int[], int[], double[], double[], ifstream &);
 void outputUniversityData(string[], string[], string[], int[], int[], double[], double[], int, ofstream &);
+double averageTuition(int[], int);
 
 int main() {
     // Initialize school info variables
@@ -18,6 +19,7 @@ int main() {
     string universities[arrSize], states[arrSize], cities[arrSize];
     int yrlyTuition[arrSize], enrollments[arrSize];
     double avgFreshmanRetention[arrSize], gradsInSixYrs[arrSize];
+    double tuitionAvg;
 
     // Initialize Reference to file
     ifstream fileIn;
@@ -42,6 +44,9 @@ int main() {
     // Close files
     fileIn.close();
     fileOut.close();
+
+    // Calculate Tuition Average
+    tuitionAvg = averageTuition(yrlyTuition, dataLength);
 
     return 0;
 }
@@ -115,4 +120,31 @@ void outputUniversityData(string universities[], string states[], string cities[
     }
 
     return;
+} // outputUniversityData
+
+/////////////////////////////////////////////////////////////////////////
+
+double averageTuition(int tuition[], int size) {
+      /*
+      Pre: yrlyTutition - reference to yrlyTuition array
+      size - length of data
+      Post: average of total tuition
+      Purpose: return the average tuition
+  */
+
+    // Initialize variables
+    double totalTuition = 0;
+    double avgTuition;
+
+    // Iterate through data
+    for (int i = 0; i < size; i++) {
+        // sum up total tuition
+        totalTuition+=tuition[i];
+    }
+
+    // Calculate average tuition
+    avgTuition = totalTuition / size;
+
+    // Return average tuition calculation
+    return avgTuition;
 }
