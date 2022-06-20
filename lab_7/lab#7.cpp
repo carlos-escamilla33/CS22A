@@ -67,14 +67,15 @@ int inputUniversityData(string universities[], string states[], string cities[],
 
     while (!fileIn.eof()) {
         // Read line of files
-        getline(fileIn, universities[idx]);
+        getline(fileIn, universities[idx]);       
+        // Skips next 100 input characters, until new line is read
         fileIn >> states[idx];
         getline(fileIn, cities[idx]);
-        fileIn >> yrlyTuition[idx] >> enrollments[idx] >> placeHolder;
+        fileIn >> yrlyTuition[idx] >> enrollments[idx];
+        fileIn >> placeHolder;
         fileIn >> avgFreshmanRetention[idx] >> gradsInSixYrs[idx];
-
-        // Skips next 100 input characters, until new line is read
         fileIn.ignore(100, '\n');
+
 
         // Increment the index by 1
         idx++;
@@ -102,10 +103,13 @@ void outputUniversityData(string universities[], string states[], string cities[
 
     // Iterate through university data
     fileOut << setprecision(2) << fixed;
-    fileOut << setw(45) << left << "University" << setw(30) << " " << setw(10) << left << "State" << endl;
-    fileOut << endl;
+    fileOut << setw(38) << left << "University" << setw(6) << right << "State" <<
+     setw(12) << right << "Tuition" << setw(16) << right <<"Enrollment" <<  endl << endl;
     for (int i = 0; i < dataLength; i++) {
-        fileOut << setw(45) << left << universities[i] << endl;
+        fileOut << universities[i];
+        fileOut <<  setw(40) << ' ' << setw(5) << left << states[i] << setw(14) << right << yrlyTutition[i]<< setw(14) << right << enrollments[i] * 100 <<
+         setw(14) << right << avgFreshmanRetention[i] * 100 << '%' << setw(16) << right << gradsInSixYrs[i] * 100 << '%' << endl;
+        // fileOut << setw(20) << states[i];
     }
 
     return;
