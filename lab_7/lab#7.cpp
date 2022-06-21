@@ -80,8 +80,11 @@ int main() {
 
     // cout << "----------------------------" << endl << endl;
 
-    // Sorting universities
+    // Sorting university data in decending order by graduation in six years percentage
     selectionSort(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
+
+    // Writing to file updated data
+    outputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Close files
     fileIn.close();
@@ -161,6 +164,8 @@ void outputUniversityData(string universities[], string states[], string cities[
         fileOut << setw(5) << left << states[i] << setw(8) << right << yrlyTutition[i] << setw(14) << right <<
          enrollments[i] * 100 << setw(14) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
     }
+
+    fileOut << endl << endl;
 
     return;
 } // outputUniversityData
@@ -332,7 +337,9 @@ void selectionSort(string universities[], string states[], string cities[], int 
     */
 
     // Initializing variables
-    double temp;
+    string tempUniversity, tempState, tempCity;
+    int tempTuition, tempEnrollment;
+    double tempAvgFrshRetention, tempGrads;
     int min_value, j, i;
 
     // Iterate through gradsInSixYrs data
@@ -350,15 +357,43 @@ void selectionSort(string universities[], string states[], string cities[], int 
 
         // If the min_value index is not the same we know there was a reassigment
         if (min_value != i) {
-            // Swap values
-            temp = gradsInSixYrs[min_value];
-            gradsInSixYrs[min_value] = gradsInSixYrs[i];
-            gradsInSixYrs[i] = temp;
-        }
+            // Swap universities
+            tempUniversity = universities[min_value];
+            universities[min_value] = universities[i];
+            universities[i] = tempUniversity;
 
-        cout << gradsInSixYrs[i] << " " << endl;
+            // Swap states
+            tempState = states[min_value];
+            states[min_value] = states[i];
+            states[i] = tempState;
+
+            // Swap cities
+            tempCity = cities[min_value];
+            cities[min_value] = cities[i];
+            cities[i] = tempCity;
+
+            // Swap yearly tuition
+            tempTuition = yrlyTutition[min_value];
+            yrlyTutition[min_value] = yrlyTutition[i];
+            yrlyTutition[i] = tempTuition;
+
+            // Swap enrollments
+            tempEnrollment = enrollments[min_value];
+            enrollments[min_value] = enrollments[i];
+            enrollments[i] = tempEnrollment;
+
+            // Swap average freshman retention percentage
+            tempAvgFrshRetention = avgFreshmanRetention[min_value];
+            avgFreshmanRetention[min_value] = avgFreshmanRetention[i];
+            avgFreshmanRetention[i] = tempAvgFrshRetention;
+
+            // Swap graduations in six years percentage
+            tempGrads = gradsInSixYrs[min_value];
+            gradsInSixYrs[min_value] = gradsInSixYrs[i];
+            gradsInSixYrs[i] = tempGrads;
+
+        }
     }
-    
 
     return;
 }
