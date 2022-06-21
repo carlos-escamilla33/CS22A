@@ -16,7 +16,7 @@ double averageTuition(int[], int);
 void maxTuition(int[], string[], int);
 void collegesByState(string[], string[], string[], int[], int[], double[], double[], int, ofstream &);
 int lowestUniTuition(string[], int[], int);
-void sortByGradInSixYrs(string[], string[], string[], int[], int[], double[], double[], int);
+void selectionSort(string[], string[], string[], int[], int[], double[], double[], int);
 
 int main() {
     // Initialize variables
@@ -54,34 +54,34 @@ int main() {
     outputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Calculate Tuition Average
-    tuitionAvg = averageTuition(yrlyTuition, dataLength);
+    // tuitionAvg = averageTuition(yrlyTuition, dataLength);
 
     // Ouput the average tuition for all universities
-    cout << setprecision(2) << fixed;
-    cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
+    // cout << setprecision(2) << fixed;
+    // cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
 
     // Find user schools they can afford
-    maxTuition(yrlyTuition, universities, dataLength);
+    // maxTuition(yrlyTuition, universities, dataLength);
 
     // Write colleges found by state to fileOut
-    collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
+    // collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Find universities with the lowest tuition
-    lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
+    // lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
 
     // Ouput university/universities with the lowest tuition
-    cout << "University/Universities with the lowest tuition cost......" << endl;
-    cout << setprecision(2) << fixed << endl;
-    for (int i = 0; i < dataLength; i++) {
-        if (yrlyTuition[i] == lowestTuition) {
-            cout <<setw(38) << left << universities[i] << setw(8) << left << '$' << yrlyTuition[i] << endl;
-        }
-    }
+    // cout << "University/Universities with the lowest tuition cost......" << endl;
+    // cout << setprecision(2) << fixed << endl;
+    // for (int i = 0; i < dataLength; i++) {
+    //     if (yrlyTuition[i] == lowestTuition) {
+    //         cout <<setw(38) << left << universities[i] << setw(8) << left << '$' << yrlyTuition[i] << endl;
+    //     }
+    // }
 
-    cout << "----------------------------" << endl << endl;
+    // cout << "----------------------------" << endl << endl;
 
     // Sorting universities
-    // sortByGradInSixYrs(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
+    selectionSort(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
 
     // Close files
     fileIn.close();
@@ -316,7 +316,7 @@ int lowestUniTuition(string states[], int tuition[], int size) {
 
 /////////////////////////////////////////////////////////////////////////
 
-void sortByGradInSixYrs(string universities[], string states[], string cities[], int yrlyTutition[],
+void selectionSort(string universities[], string states[], string cities[], int yrlyTutition[],
                      int enrollments[], double avgFreshmanRetention[], double gradsInSixYrs[], int size) {
     /*
         Pre: universities - reference to universities array
@@ -332,26 +332,33 @@ void sortByGradInSixYrs(string universities[], string states[], string cities[],
     */
 
     // Initializing variables
-    // double temp;
+    double temp;
+    int min_value, j, i;
 
     // Iterate through gradsInSixYrs data
-    for (int i = 0; i < size-1; i++) {
-        // Find the minimum element in
-        // unsorted array
-        int minIdx = i;
-        for (int j = i+1; j < size; j++) {
-        if (gradsInSixYrs[j] < gradsInSixYrs[minIdx])
-            minIdx = j;
- 
-        // Swap the found minimum element
-        // with the first element
-            double temp = gradsInSixYrs[minIdx];
-            gradsInSixYrs[minIdx] = gradsInSixYrs[i];
+    for (i = 0; i < size - 1; i++) {
+        // declare min idx
+        min_value = i;
+        // iterate through numbers to the right of i
+        for (j = i + 1; j < size; j++) {
+            // If index j value is greater than min_value index value
+            if (gradsInSixYrs[j] > gradsInSixYrs[min_value]) {
+                // Assign min_value the index of j
+                min_value = j;
+            }
+        }
+
+        // If the min_value index is not the same we know there was a reassigment
+        if (min_value != i) {
+            // Swap values
+            temp = gradsInSixYrs[min_value];
+            gradsInSixYrs[min_value] = gradsInSixYrs[i];
             gradsInSixYrs[i] = temp;
         }
 
-        cout << gradsInSixYrs[i] << ' ' << endl;
+        cout << gradsInSixYrs[i] << " " << endl;
     }
+    
 
     return;
 }

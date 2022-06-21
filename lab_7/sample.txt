@@ -26,12 +26,3 @@ University of California-Los Angeles    CA      25064       4219000         97.0
 University of Virginia                  VA      42184       2346400         97.00%             93.00%
 Carnegie Mellon University              PA      48786       1299100         95.00%             88.00%
 University of Southern California       CA      48280       4136800         97.00%             91.00%
-----------------------------------------------------------------------------------------------------------------------
-
-                           SEARCH RESULTS FOR SCHOOLS IN THE STATE OF CA.....
-
-Stanford University                     CA      44757       1813600         98.00%             96.00%
-California Institute of Technology      CA      43362        218100         97.00%             93.00%
-University of California-Berkeley       CA      25064       3620400         97.00%             91.00%
-University of California-Los Angeles    CA      25064       4219000         97.00%             90.00%
-University of Southern California       CA      48280       4136800         97.00%             91.00%
