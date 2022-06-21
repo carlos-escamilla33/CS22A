@@ -69,19 +69,19 @@ int main() {
     // Find universities with the lowest tuition
     lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
 
-    cout << endl
-         << "Universities with the lowest tuition cost......" << endl;
-    cout << setprecision(2) << fixed << endl;
-    for (int i = 0; i < dataLength; i++) {
-        if (yrlyTuition[i] == lowestTuition) {
-            cout << universities[i] << endl;
-            cout << "Yearly tuition: " << '$' << yrlyTuition[i] << endl
-                 << endl;
-        }
-    }
+    // cout << endl
+    //      << "Universities with the lowest tuition cost......" << endl;
+    // cout << setprecision(2) << fixed << endl;
+    // for (int i = 0; i < dataLength; i++) {
+    //     if (yrlyTuition[i] == lowestTuition) {
+    //         cout << universities[i] << endl;
+    //         cout << "Yearly tuition: " << '$' << yrlyTuition[i] << endl
+    //              << endl;
+    //     }
+    // }
 
     // Sorting universities
-    sortByGradInSixYrs(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
+    // sortByGradInSixYrs(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
 
     // Close files
     fileIn.close();
@@ -112,6 +112,9 @@ int inputUniversityData(string universities[], string states[], string cities[],
     while (!fileIn.eof()) {
         // Read line of files
         getline(fileIn, universities[idx]);
+        if (universities[idx].substr(universities[idx].size()-1) == "\n" || universities[idx].substr(universities[idx].size()-1) == "\r") {
+                universities[idx] = universities[idx].substr(0, universities[idx].size()-1);
+        }
         fileIn >> states[idx];
         getline(fileIn, cities[idx]);
         fileIn >> yrlyTuition[idx] >> enrollments[idx];
@@ -153,8 +156,8 @@ void outputUniversityData(string universities[], string states[], string cities[
 
     // Iterate through university data
     for (int i = 0; i < dataLength; i++) {
-        fileOut << universities[i];
-        fileOut << setw(40) << ' ' << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) << right <<
+        fileOut <<setw(40) << left << universities[i];
+        fileOut << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) << right <<
          enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
     }
 
