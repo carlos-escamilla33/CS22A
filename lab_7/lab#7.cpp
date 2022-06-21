@@ -54,31 +54,31 @@ int main() {
     outputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Calculate Tuition Average
-    // tuitionAvg = averageTuition(yrlyTuition, dataLength);
+    tuitionAvg = averageTuition(yrlyTuition, dataLength);
 
     // Ouput the average tuition for all universities
-    // cout << setprecision(2) << fixed;
-    // cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
+    cout << setprecision(2) << fixed;
+    cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
 
     // Find user schools they can afford
-    // maxTuition(yrlyTuition, universities, dataLength);
+    maxTuition(yrlyTuition, universities, dataLength);
 
     // Write colleges found by state to fileOut
-    // collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
+    collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Find universities with the lowest tuition
     lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
 
-    // cout << endl
-    //      << "Universities with the lowest tuition cost......" << endl;
-    // cout << setprecision(2) << fixed << endl;
-    // for (int i = 0; i < dataLength; i++) {
-    //     if (yrlyTuition[i] == lowestTuition) {
-    //         cout << universities[i] << endl;
-    //         cout << "Yearly tuition: " << '$' << yrlyTuition[i] << endl
-    //              << endl;
-    //     }
-    // }
+    // Ouput university/universities with the lowest tuition
+    cout << "University/Universities with the lowest tuition cost......" << endl;
+    cout << setprecision(2) << fixed << endl;
+    for (int i = 0; i < dataLength; i++) {
+        if (yrlyTuition[i] == lowestTuition) {
+            cout <<setw(38) << left << universities[i] << setw(8) << left << '$' << yrlyTuition[i] << endl;
+        }
+    }
+
+    cout << "----------------------------" << endl << endl;
 
     // Sorting universities
     // sortByGradInSixYrs(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
@@ -150,15 +150,16 @@ void outputUniversityData(string universities[], string states[], string cities[
 
     // Format headers of output file
     fileOut << setprecision(2) << fixed;
-    fileOut << setw(38) << left << "University" << setw(6) << right << "State" << setw(12) << right << "Tuition" <<
-     setw(16) << right << "Enrollment" << setw(20) << right << "%Fresh Succeed" << setw(26) << right << "%Graduate in six years" << endl
-            << endl;
+    fileOut << setw(38) << left << "University" << setw(6) << right << "State" << setw(10) << right << "Tuition" <<
+        setw(14) << right << "Enrollment" << setw(18) << right << "%Fresh Succeed" << setw(25) << right << "%Graduate in six years" << endl;
+    fileOut << setw(38) << left << "----------" << setw(6) << right << "-----" << setw(10) << right << "-------" <<
+        setw(14) << right << "----------" << setw(18) << right << "--------------" << setw(25) << right << "----------------------" << endl;
 
     // Iterate through university data
     for (int i = 0; i < dataLength; i++) {
         fileOut <<setw(40) << left << universities[i];
-        fileOut << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) << right <<
-         enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
+        fileOut << setw(5) << left << states[i] << setw(8) << right << yrlyTutition[i] << setw(14) << right <<
+         enrollments[i] * 100 << setw(14) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
     }
 
     return;
@@ -208,9 +209,9 @@ void maxTuition(int tuition[], string universities[], int size) {
     cout << "Enter preferred yearly tuition cost: ";
     cin >> userTutition;
 
+    // Output description of action
+    cout << "These are the schools that cost $" << userTutition << " or less...." << endl << endl;
     // Iterate through schools
-    cout << "These are the schools that are in your budget..." << endl
-         << endl;
     for (int i = 0; i < size; i++) {
         // if the school tuition is less than or equal to user input output university name
         if (tuition[i] <= userTutition) {
@@ -218,7 +219,8 @@ void maxTuition(int tuition[], string universities[], int size) {
         }
     }
 
-    cout << endl;
+    // Separating by section
+    cout << "----------------------------" << endl << endl;
 
     return;
 } // maxTuition
@@ -258,7 +260,7 @@ void collegesByState(string universities[], string states[], string cities[], in
     fileOut << "-------------------------------------------------------------------------"
             << "---------------------------------------------" << endl
             << endl;
-    fileOut << "Search results for the state of " << capState << "....." << endl
+    fileOut << setw(70) << right << "SEARCH RESULTS FOR SCHOOLS IN THE STATE OF " << capState << "....." << endl
             << endl;
 
     // Iterate through states
@@ -267,9 +269,9 @@ void collegesByState(string universities[], string states[], string cities[], in
         if (capState == states[i]) {
             // if found then assign the state to variable found state
             foundState = states[i];
-            fileOut << universities[i];
-            fileOut << setw(40) << ' ' << setw(5) << left << states[i] << setw(10) << right << yrlyTutition[i] << setw(14) <<
-             right << enrollments[i] * 100 << setw(18) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
+            fileOut << setw(40) << left << universities[i];
+            fileOut << setw(5) << left << states[i] << setw(8) << right << yrlyTutition[i] << setw(14) << right <<
+                enrollments[i] * 100 << setw(14) << right << avgFreshmanRetention[i] * 100 << '%' << setw(18) << right << gradsInSixYrs[i] * 100 << '%' << endl;
         }
     }
 
@@ -279,6 +281,10 @@ void collegesByState(string universities[], string states[], string cities[], in
     if (foundState.length() == 0) {
         fileOut << "No colleges in " << userState << " state in list." << endl;
     }
+
+     // Separating by section
+    cout << "Refer to output file for results..." << endl;
+    cout << "----------------------------" << endl << endl;
 
     return;
 } // collegesByState
