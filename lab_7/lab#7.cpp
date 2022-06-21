@@ -54,36 +54,37 @@ int main() {
     outputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Calculate Tuition Average
-    // tuitionAvg = averageTuition(yrlyTuition, dataLength);
+    tuitionAvg = averageTuition(yrlyTuition, dataLength);
 
     // Ouput the average tuition for all universities
-    // cout << setprecision(2) << fixed;
-    // cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
+    cout << setprecision(2) << fixed;
+    cout << "Average University Tuition: " << '$' << tuitionAvg << endl << endl;
 
     // Find user schools they can afford
-    // maxTuition(yrlyTuition, universities, dataLength);
+    maxTuition(yrlyTuition, universities, dataLength);
 
     // Write colleges found by state to fileOut
-    // collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
+    collegesByState(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Find universities with the lowest tuition
-    // lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
+    lowestTuition = lowestUniTuition(states, yrlyTuition, dataLength);
 
     // Ouput university/universities with the lowest tuition
-    // cout << "University/Universities with the lowest tuition cost......" << endl;
-    // cout << setprecision(2) << fixed << endl;
-    // for (int i = 0; i < dataLength; i++) {
-    //     if (yrlyTuition[i] == lowestTuition) {
-    //         cout <<setw(38) << left << universities[i] << setw(8) << left << '$' << yrlyTuition[i] << endl;
-    //     }
-    // }
+    cout << "University/Universities with the lowest tuition cost......" << endl;
+    cout << setprecision(2) << fixed << endl;
+    for (int i = 0; i < dataLength; i++) {
+        if (yrlyTuition[i] == lowestTuition) {
+            cout <<setw(38) << left << universities[i] << setw(8) << left << '$' << yrlyTuition[i] << endl;
+        }
+    }
 
-    // cout << "----------------------------" << endl << endl;
+    cout << "----------------------------" << endl << endl;
 
     // Sorting university data in decending order by graduation in six years percentage
     selectionSort(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength);
 
     // Writing to file updated data
+    fileOut << setw(80) << right << "UPDATED SORTED DATA BY PERCENTAGE OF GRADUATION IN SIX YEARS" << endl << endl;
     outputUniversityData(universities, states, cities, yrlyTuition, enrollments, avgFreshmanRetention, gradsInSixYrs, dataLength, fileOut);
 
     // Close files
@@ -280,6 +281,12 @@ void collegesByState(string universities[], string states[], string cities[], in
         }
     }
 
+    // Separate fileOut info
+    fileOut << endl << endl;
+    fileOut << "-------------------------------------------------------------------------"
+            << "---------------------------------------------" << endl
+            << endl;
+
     cout << endl;
 
     // If there is no state found tell user there is no match
@@ -301,7 +308,7 @@ int lowestUniTuition(string states[], int tuition[], int size) {
       Pre: states- reference to states array
       tuition - reference to yrlyTuition array
       size - length of data
-      Post: nothing
+      Post: lowest university tution
       Purpose: return the lowest university tuition
   */
 
@@ -310,6 +317,8 @@ int lowestUniTuition(string states[], int tuition[], int size) {
 
     // Iterate over tuition array
     for (int i = 0; i < size; i++) {
+        // If the current tuition we are are is less than 
+        // the lowest tuition then we reassign lowest tuition
         if (tuition[i] < lowestTuition) {
             lowestTuition = tuition[i];
         }
@@ -333,13 +342,15 @@ void selectionSort(string universities[], string states[], string cities[], int 
         gradsInSixYrs - reference to gradsInSixYrs
         size - length of data
         Post: nothing
-        Purpose: sort gradsInSixYrs array in decending order using selection sort
+        Purpose: sort data by percentage of graduation in six years in decending order using the selection sort algorithm
     */
 
-    // Initializing variables
+    // Initializing temp variables
     string tempUniversity, tempState, tempCity;
     int tempTuition, tempEnrollment;
     double tempAvgFrshRetention, tempGrads;
+
+    // Initializing for loop variables
     int min_value, j, i;
 
     // Iterate through gradsInSixYrs data
@@ -397,3 +408,32 @@ void selectionSort(string universities[], string states[], string cities[], int 
 
     return;
 }
+
+/*
+    Average University Tuition: $44399.50
+
+    Enter preferred yearly tuition cost: 44000
+    These are the schools that cost $44000 or less....
+
+    Princeton University 
+    Harvard University
+    California Institute of Technology
+    Vanderbilt University
+    Rice University
+    University of California-Berkeley
+    University of California-Los Angeles
+    University of Virginia
+    ----------------------------
+
+    Enter the two letter abbreviation of the state you want to attend school in: CA
+
+    Refer to output file for results...
+    ----------------------------
+
+    University/Universities with the lowest tuition cost......
+
+    University of California-Berkeley     $       25064
+    University of California-Los Angeles  $       25064
+    ----------------------------
+
+*/
